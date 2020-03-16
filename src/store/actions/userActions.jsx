@@ -48,3 +48,19 @@ export const currentUser = () => {
     });
   };
 };
+
+export const logOut = history => {
+  return dispatch => {
+    firebaseApp
+      .auth()
+      .signOut()
+      .then(data => {
+        console.log(data);
+        dispatch({type: 'SIGNOUT_SUCCESS'});
+        history.navigate('Auth');
+      })
+      .catch(error => {
+        dispatch({type: 'SIGNOUT_FAILURE', err: error});
+      });
+  };
+};

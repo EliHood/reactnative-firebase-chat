@@ -45,6 +45,13 @@ const authReducer = (state = initialState, action) =>
         draft.isLoading = false;
         draft.currentUser = null;
         return;
+      case 'SIGNOUT_SUCCESS':
+        console.log(action);
+        draft.currentUser = null;
+        return;
+      case 'SIGNOUT_FAILURE':
+        console.log(action);
+        return;
     }
   });
 
