@@ -6,7 +6,6 @@ import {withNavigation} from 'react-navigation';
 import RoomViewHoc from './../../hoc/RoomViewHoc';
 function AddRoomName(props) {
   const [roomName, setRoomname] = React.useState('');
-
   return (
     <Fragment>
       <Subheading style={styles.header}>Add Room Name</Subheading>
@@ -14,10 +13,10 @@ function AddRoomName(props) {
         style={styles.textField}
         name="roomName"
         label="Enter Room Name"
-        value={roomName}
+        value={props.room.roomName}
         error={null}
         autoCapitalize="none"
-        onChangeText={roomName => setRoomname(roomName)}
+        onChangeText={name => props.addRoomName(name)}
       />
       <Button
         style={{marginTop: 40}}

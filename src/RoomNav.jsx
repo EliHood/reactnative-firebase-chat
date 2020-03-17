@@ -2,9 +2,10 @@ import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import Icon from 'react-native-vector-icons/AntDesign';
-import AddRoomName from './flows/roomflow/AddRoomName';
-import AddRoomDesc from './flows/roomflow/AddRoomDesc';
+import AddRoomName from './store/containers/AddRoomName';
+import AddRoomDesc from './store/containers/AddRoomDesc';
 import Room from './screens/Room';
+import Rooms from './store/containers/rooms';
 const RoomNav = createStackNavigator(
   {
     AddRoomName: {

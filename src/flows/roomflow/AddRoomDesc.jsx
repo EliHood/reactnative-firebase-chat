@@ -4,6 +4,14 @@ import {View, Text, StyleSheet} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import RoomViewHoc from './../../hoc/RoomViewHoc';
 function AddRoomDescription(props) {
+  console.log(props);
+  const addRoom = () => {
+    const data = {
+      roomName: props.room.roomName,
+      roomDesc: props.room.roomDesc,
+    };
+    props.initAddRoom(data, props.navigation);
+  };
   return (
     <Fragment>
       <Subheading style={styles.header}>Add Room Description</Subheading>
@@ -11,16 +19,16 @@ function AddRoomDescription(props) {
         style={styles.textField}
         name="roomNameDescription"
         label="Enter Room Description"
-        value={null}
+        value={props.room.roomDesc}
         error={null}
         autoCapitalize="none"
-        onChangeText={null}
+        onChangeText={desc => props.addRoomDesc(desc)}
       />
       <Button
         style={{marginTop: 40}}
         compact={true}
         mode="flat"
-        onPress={() => props.navigation.navigate('Room')}>
+        onPress={addRoom}>
         Continue
       </Button>
     </Fragment>

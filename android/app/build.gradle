@@ -184,6 +184,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(path: ":@react-native-firebase_auth")
     implementation 'com.google.firebase:firebase-auth:19.3.0'
+    implementation project(path: ":@react-native-firebase_database")
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
         debugImplementation files(hermesPath + "hermes-debug.aar")

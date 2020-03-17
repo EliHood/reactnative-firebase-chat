@@ -9,6 +9,7 @@ import {Button} from 'react-native-paper';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
 import AddRoomName from './flows/roomflow/AddRoomName';
 import Room from './screens/Room';
+import Rooms from './store/containers/rooms';
 const AppNavigator = createMaterialBottomTabNavigator(
   {
     Home: {
@@ -20,10 +21,10 @@ const AppNavigator = createMaterialBottomTabNavigator(
       },
     },
     Rooms: {
-      screen: Room,
+      screen: Rooms,
       navigationOptions: () => {
         return {
-          tabBarVisible: false,
+          // tabBarVisible: false,
           tabBarIcon: ({tintColor}) => (
             <Icon name="aliwangwang-o1" color={tintColor} size={24} />
           ),
