@@ -7,24 +7,36 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Setting from './store/containers/settings';
 import {Button} from 'react-native-paper';
 import {StyleSheet, View, Text, TextInput} from 'react-native';
-const AppNavigator = createStackNavigator(
+import AddRoomName from './flows/roomflow/AddRoomName';
+import Room from './screens/Room';
+const AppNavigator = createMaterialBottomTabNavigator(
   {
     Home: {
       screen: Home,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: () => (
-          <Text
-            style={{paddingLeft: 20}}
-            icon="logout"
-            mode="contained"
-            onPress={() => navigation.navigate('Settings')}>
-            Settings
-          </Text>
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="home" color={tintColor} size={24} />
         ),
-      }),
+      },
+    },
+    Rooms: {
+      screen: Room,
+      navigationOptions: () => {
+        return {
+          tabBarVisible: false,
+          tabBarIcon: ({tintColor}) => (
+            <Icon name="aliwangwang-o1" color={tintColor} size={24} />
+          ),
+        };
+      },
     },
     Settings: {
       screen: Setting,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="setting" color={tintColor} size={24} />
+        ),
+      },
     },
   },
 

@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation';
 import AuthLoadingScreen from './store/containers/authloadingscreen';
 import UnAuthNavigation from './UnauthenticatedNav';
 import AppNavigator from './AuthenticatedNav';
+import RoomNav from './RoomNav';
 import {createStackNavigator} from 'react-navigation-stack';
 export default createAppContainer(
   createStackNavigator(
@@ -12,6 +13,7 @@ export default createAppContainer(
       },
       App: AppNavigator,
       Auth: UnAuthNavigation,
+      RoomNav: RoomNav,
     },
     {
       initialRouteName: 'AuthLoading',

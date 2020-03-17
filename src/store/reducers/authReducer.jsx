@@ -12,7 +12,7 @@ const authReducer = (state = initialState, action) =>
       // upon submit, loading spinner will show, after success loading will stop
       case 'SIGNUP_SUCCESS':
         console.log(action);
-        draft.isLoading = true;
+        draft.isLoading = false;
         draft.isAuthenticated = true;
         return;
       case 'SIGNUP_ERROR':
@@ -29,6 +29,7 @@ const authReducer = (state = initialState, action) =>
       case 'SIGNIN_FAILURE':
         console.log(action);
         draft.isAuthenticated = false;
+        draft.isLoading = false;
         return;
       case 'CURRENT_USER_INIT':
         console.log(action);
@@ -45,9 +46,14 @@ const authReducer = (state = initialState, action) =>
         draft.isLoading = false;
         draft.currentUser = null;
         return;
+      case 'SIGNOUT_INIT':
+        console.log('signout init');
+        draft.isLoading = true;
+        return;
       case 'SIGNOUT_SUCCESS':
         console.log(action);
         draft.currentUser = null;
+        draft.isLoading = false;
         return;
       case 'SIGNOUT_FAILURE':
         console.log(action);

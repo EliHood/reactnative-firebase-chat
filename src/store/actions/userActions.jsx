@@ -1,17 +1,20 @@
-import firebaseApp from './../../firebase';
+// import firebaseApp from './../../firebase';
+import auth from '@react-native-firebase/auth';
+
 export const initRegister = (user, history) => {
   return dispatch => {
     console.log('hii', user);
-    firebaseApp
-      .auth()
+    auth()
       .createUserWithEmailAndPassword(user.email.trim(), user.password)
       .then(data => {
-        dispatch({type: 'SIGNUP_SUCCESS', payload: data});
+        console.log(data);
+        dispatch({type: 'SIGNUP_SUCCESS', payload: data, confirmResult});
         history.navigate('App');
       })
-      .catch(err => {
-        alert(err);
-        dispatch({type: 'SIGNUP_ERROR', err});
+      .catch(error => {
+        dispatch({type: 'SIGNUP_ERROR', error});
+        alert(error.message);
+        console.log(error);
       });
   };
 };
@@ -20,12 +23,11 @@ export const initLogin = (user, history) => {
   return dispatch => {
     dispatch({type: 'SIGNIN_INIT'});
     console.log('hii login', user);
-    firebaseApp
-      .auth()
+    auth()
       .signInWithEmailAndPassword(user.email.trim(), user.password)
       .then(data => {
         dispatch({type: 'SIGNIN_SUCCESS', payload: data});
-        history.navigate('App');
+        history.navigate('Home');
       })
       .catch(err => {
         alert(err);
@@ -37,9 +39,9 @@ export const initLogin = (user, history) => {
 export const currentUser = () => {
   return dispatch => {
     dispatch({type: 'CURRENT_USER_INIT'});
-    const currentUser = firebaseApp.auth().currentUser;
+    const currentUser = auth().currentUser;
     console.log(currentUser);
-    firebaseApp.auth().onAuthStateChanged(user => {
+    auth().onAuthStateChanged(user => {
       if (user) {
         dispatch({type: 'CURRENT_USER_SUCCESS', payload: user.providerData[0]});
       } else {
@@ -51,8 +53,8 @@ export const currentUser = () => {
 
 export const logOut = history => {
   return dispatch => {
-    firebaseApp
-      .auth()
+    dispatch({type: 'SIGNOUT_INIT'});
+    auth()
       .signOut()
       .then(data => {
         console.log(data);

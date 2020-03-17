@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
-import {View, Text, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {Subheading} from 'react-native-paper';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {TextInput, HelperText} from 'react-native-paper';
 import SignUpForm from './../forms/SignUp';
 import {Button} from 'react-native-paper';
@@ -16,9 +17,12 @@ function SignUp(props) {
     props.initRegister(user, props.navigation);
   };
   return (
-    <View style={styles.container}>
+    <Fragment>
       <Subheading style={styles.header}>Another Chat App</Subheading>
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{x: 0, y: 0}}
+        contentContainerStyle={styles.container}
+        scrollEnabled={false}>
         <View style={styles.form}>
           <TextInput
             style={styles.textField}
@@ -47,16 +51,16 @@ function SignUp(props) {
             Sign Up
           </Button>
         </View>
-      </KeyboardAvoidingView>
-    </View>
+      </KeyboardAwareScrollView>
+    </Fragment>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    padding: 40,
+    padding: 30,
     fontSize: 25,
-    marginTop: 10,
+    marginTop: 0,
   },
   form: {
     padding: 20,
@@ -64,7 +68,8 @@ const styles = StyleSheet.create({
   textField: {
     backgroundColor: 'transparent',
     padding: 0,
-    marginBottom: 22,
+    margin: 0,
+    marginBottom: 12,
   },
   container: {
     // alignItems: 'center',

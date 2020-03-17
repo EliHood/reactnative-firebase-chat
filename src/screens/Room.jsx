@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 import {Subheading} from 'react-native-paper';
 import {GiftedChat} from 'react-native-gifted-chat';
-import AddRoom from './../components/AddRoom';
-function Home() {
+
+function Room() {
   const [messages, setMessages] = useState([
     {
-      // _id: 1,
-      // text: 'Hello developer',
-      // createdAt: new Date(),
-      // user: {_id: 2, name: 'Name'},
+      _id: 1,
+      text: 'Hello developer',
+      createdAt: new Date(),
+      user: {_id: 2, name: 'Name'},
     },
   ]);
 
@@ -20,17 +20,14 @@ function Home() {
   console.log(messages);
   return (
     <View style={{flex: 1, margin: 20}}>
-      {/* <Subheading style={styles.header}>This is the chat</Subheading>
-
+      <Subheading style={styles.header}>Room</Subheading>
       <GiftedChat
         messages={messages}
         onSend={message => onSend(message)}
         user={{
           _id: messages._id,
         }}
-      /> */}
-      <Subheading>Home</Subheading>
-      <AddRoom />
+      />
     </View>
   );
 }
@@ -45,4 +42,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-export default Home;
+export default Room;

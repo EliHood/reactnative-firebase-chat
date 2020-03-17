@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "86309274060",
+    "firebase_url": "https://eliapi9-97ae0.firebaseio.com",
+    "project_id": "eliapi9-97ae0",
+    "storage_bucket": "eliapi9-97ae0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86309274060:android:53779770e95efd90d49d69",
+        "android_client_info": {
+          "package_name": "com.nativeapp3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86309274060-nm2ig7197jmvkkke1m9vqvr8ufefucj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqISeveN7LLhbfkudRUzLNXjl-pyd38PU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86309274060-nm2ig7197jmvkkke1m9vqvr8ufefucj3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
