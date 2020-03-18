@@ -9,19 +9,17 @@ class AuthLoadingScreen extends React.Component {
   _bootstrapAsync = async () => {
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
-    const user = this.props.user.currentUser;
+
     this.props.currentUser();
+    const user = this.props.user.currentUser;
+    console.log(user);
   };
 
-  shouldComponentUpdate(nextProps) {
-    console.log('sdddd', nextProps);
-    const user = nextProps.user.currentUser;
-    if (nextProps.user.currentUser !== this.props.user.currentUser) {
-      nextProps.navigation.navigate(user !== null ? 'App' : 'Auth');
-      return true;
-    }
-    // nextProps.navigation.navigate('Auth');
-    return false; //this is the missing piece
+  async componentDidMount() {
+    await AsyncStorage.getItem('auth').then(token => {
+      console.log(token);
+      this.props.navigation.navigate(token ? 'App' : 'Auth');
+    });
   }
   render() {
     return (

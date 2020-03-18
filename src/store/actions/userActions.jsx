@@ -1,5 +1,6 @@
 // import firebaseApp from './../../firebase';
 import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const initRegister = (user, history) => {
   return dispatch => {
@@ -7,7 +8,7 @@ export const initRegister = (user, history) => {
     auth()
       .createUserWithEmailAndPassword(user.email.trim(), user.password)
       .then(data => {
-        console.log(data);
+        storeData(data.user._user.uid);
         dispatch({type: 'SIGNUP_SUCCESS', payload: data, confirmResult});
         history.navigate('App');
       })
@@ -19,6 +20,25 @@ export const initRegister = (user, history) => {
   };
 };
 
+const storeData = async userData => {
+  try {
+    await AsyncStorage.setItem('auth', userData);
+  } catch (e) {
+    // saving error
+  }
+};
+
+const removeUserStorage = async () => {
+  try {
+    await AsyncStorage.removeItem('auth').then(value => {
+      const data = JSON.stringify(value);
+      return data;
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const initLogin = (user, history) => {
   return dispatch => {
     dispatch({type: 'SIGNIN_INIT'});
@@ -26,6 +46,8 @@ export const initLogin = (user, history) => {
     auth()
       .signInWithEmailAndPassword(user.email.trim(), user.password)
       .then(data => {
+        console.log(data.user._user.uid);
+        storeData(data.user._user.uid);
         dispatch({type: 'SIGNIN_SUCCESS', payload: data});
         history.navigate('Home');
       })
@@ -58,6 +80,7 @@ export const logOut = history => {
       .signOut()
       .then(data => {
         console.log(data);
+        removeUserStorage();
         dispatch({type: 'SIGNOUT_SUCCESS'});
         history.navigate('Auth');
       })

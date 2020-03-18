@@ -23,6 +23,7 @@ const authReducer = (state = initialState, action) =>
         draft.isLoading = true;
         return;
       case 'SIGNIN_SUCCESS':
+        console.log(action);
         draft.isLoading = false;
         draft.isAuthenticated = true;
         return;
