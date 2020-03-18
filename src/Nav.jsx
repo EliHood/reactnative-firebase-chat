@@ -5,6 +5,7 @@ import UnAuthNavigation from './UnauthenticatedNav';
 import AppNavigator from './AuthenticatedNav';
 import RoomNav from './RoomNav';
 import {createStackNavigator} from 'react-navigation-stack';
+import AddRoomFlow from './AddRoomFlow';
 export default createAppContainer(
   createStackNavigator(
     {
@@ -13,7 +14,8 @@ export default createAppContainer(
       },
       App: AppNavigator,
       Auth: UnAuthNavigation,
-      RoomNav: RoomNav,
+      AddRoomFlow: AddRoomFlow,
+      Room: RoomNav,
     },
     {
       initialRouteName: 'AuthLoading',
