@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
-import {Subheading} from 'react-native-paper';
+import {Subheading, Caption} from 'react-native-paper';
 import {GiftedChat} from 'react-native-gifted-chat';
 
 function Room(props) {
@@ -26,6 +26,7 @@ function Room(props) {
   return (
     <View style={{flex: 1, margin: 20}}>
       <Subheading style={styles.header}>{roomData.roomName}</Subheading>
+      <Caption style={styles.caption}>{roomData.roomDesc}</Caption>
       <GiftedChat
         messages={messages}
         onSend={message => onSend(message)}
@@ -39,9 +40,13 @@ function Room(props) {
 
 const styles = StyleSheet.create({
   header: {
-    padding: 40,
+    padding: 20,
     fontSize: 25,
     marginTop: 10,
+  },
+  caption: {
+    paddingLeft: 20,
+    fontSize: 13,
   },
   container: {
     flex: 1,
