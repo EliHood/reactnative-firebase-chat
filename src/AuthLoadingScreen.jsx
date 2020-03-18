@@ -20,7 +20,7 @@ class AuthLoadingScreen extends React.Component {
       nextProps.navigation.navigate(user !== null ? 'App' : 'Auth');
       return true;
     }
-
+    // nextProps.navigation.navigate('Auth');
     return false; //this is the missing piece
   }
   render() {

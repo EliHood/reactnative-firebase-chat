@@ -17,7 +17,6 @@ export const initAddRoom = (data, history) => {
 
     // Create a reference
     const roomRef = database().ref(`/rooms/`);
-    console.log(roomRef);
     roomRef
       .push({
         roomName: data.roomName,
@@ -44,9 +43,22 @@ export const getRooms = () => {
       const ourArr = [];
       snapshot.forEach(childSnapshot => {
         var childData = childSnapshot.val();
+        const key = childSnapshot._snapshot.key;
+        childData.key = key;
         ourArr.push(childData);
       });
-      dispatch({type: 'GET_ROOM_SUCCESS', payload: ourArr});
+      dispatch({type: 'GET_ROOMS_SUCCESS', payload: ourArr});
+    });
+  };
+};
+
+export const getRoom = id => {
+  return dispatch => {
+    console.log(id);
+    const roomRef = database().ref(`rooms/${id}`);
+    roomRef.once('value').then(snapshot => {
+      console.log(snapshot);
+      dispatch({type: 'GET_ROOM_SUCCESS', payload: snapshot.val()});
     });
   };
 };

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 import {Subheading} from 'react-native-paper';
 import {GiftedChat} from 'react-native-gifted-chat';

@@ -19,7 +19,11 @@ function Rooms(props) {
           <Fragment>
             {props.room.rooms.map((room, key) => (
               <Button
-                onPress={() => props.navigation.navigate('Room')}
+                onPress={() =>
+                  props.navigation.navigate('Room', {
+                    params: {roomKey: room.key},
+                  })
+                }
                 icon="plus">
                 {room.roomName}
               </Button>

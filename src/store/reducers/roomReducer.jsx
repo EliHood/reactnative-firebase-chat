@@ -2,8 +2,10 @@ import produce from 'immer';
 const initialState = {
   roomName: '',
   roomDesc: '',
+  roomKey: '',
   rooms: [],
   isLoading: true,
+  room: {},
 };
 
 const roomReducer = (state = initialState, action) =>
@@ -20,17 +22,22 @@ const roomReducer = (state = initialState, action) =>
         console.log(action);
         draft.roomName = '';
         draft.roomDesc = '';
+        draft.roomKey = action.payload.path;
         return;
       case 'ADD_ROOM_FAILURE':
         console.log(action);
         return;
-      case 'GET_ROOM_INIT':
+      case 'GET_ROOMS_INIT':
         draft.isLoading = true;
         return;
-      case 'GET_ROOM_SUCCESS':
+      case 'GET_ROOMS_SUCCESS':
         console.log(action);
         draft.rooms = action.payload;
         draft.isLoading = false;
+        return;
+      case 'GET_ROOM_SUCCESS':
+        console.log(action);
+        draft.room = action.payload;
         return;
     }
   });
