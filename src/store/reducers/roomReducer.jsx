@@ -30,14 +30,22 @@ const roomReducer = (state = initialState, action) =>
       case 'GET_ROOMS_INIT':
         draft.isLoading = true;
         return;
+      case 'ADD_MESSAGE_SUCCESS':
+        console.log(action);
+        return;
       case 'GET_ROOMS_SUCCESS':
         console.log(action);
         draft.rooms = action.payload;
         draft.isLoading = false;
         return;
+      case 'GET_ROOM_INIT':
+        console.log(action);
+        draft.isLoading = true;
+        return;
       case 'GET_ROOM_SUCCESS':
         console.log(action);
         draft.room = action.payload;
+        draft.isLoading = false;
         return;
     }
   });

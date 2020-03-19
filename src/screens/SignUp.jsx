@@ -8,11 +8,13 @@ import {Button} from 'react-native-paper';
 function SignUp(props) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState('');
 
   const onSubmit = () => {
     const user = {
       email: email,
       password: password,
+      userName: username,
     };
     props.initRegister(user, props.navigation);
   };
@@ -32,6 +34,15 @@ function SignUp(props) {
             error={null}
             autoCapitalize="none"
             onChangeText={email => setEmail(email)}
+          />
+          <TextInput
+            style={styles.textField}
+            name="username"
+            label="Enter Username"
+            value={username}
+            error={null}
+            autoCapitalize="none"
+            onChangeText={username => setUsername(username)}
           />
           <TextInput
             style={styles.textField}

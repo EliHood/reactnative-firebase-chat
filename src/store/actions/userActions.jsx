@@ -8,8 +8,13 @@ export const initRegister = (user, history) => {
     auth()
       .createUserWithEmailAndPassword(user.email.trim(), user.password)
       .then(data => {
+        console.log('ikk', user);
         storeData(data.user._user.uid);
-        dispatch({type: 'SIGNUP_SUCCESS', payload: data, confirmResult});
+        data.user.updateProfile({
+          displayName: user.userName,
+        });
+        console.log(user.username);
+        dispatch({type: 'SIGNUP_SUCCESS', payload: data});
         history.navigate('App');
       })
       .catch(error => {

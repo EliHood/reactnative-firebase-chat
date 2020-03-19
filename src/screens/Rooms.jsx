@@ -6,7 +6,6 @@ function Rooms(props) {
   useEffect(() => {
     props.getRooms();
   }, []);
-  console.log(props.room);
   return (
     <Fragment>
       <View style={{margin: 20}}>
@@ -18,15 +17,17 @@ function Rooms(props) {
         ) : (
           <Fragment>
             {props.room.rooms.map((room, key) => (
-              <Button
-                onPress={() =>
-                  props.navigation.navigate('Room', {
-                    params: {roomKey: room.key},
-                  })
-                }
-                icon="plus">
-                {room.roomName}
-              </Button>
+              <Fragment key={key}>
+                <Button
+                  onPress={() =>
+                    props.navigation.navigate('Room', {
+                      params: {roomKey: room.key},
+                    })
+                  }
+                  icon="plus">
+                  {room.roomName}
+                </Button>
+              </Fragment>
             ))}
           </Fragment>
         )}
