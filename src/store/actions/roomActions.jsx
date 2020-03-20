@@ -24,6 +24,7 @@ export const initAddRoom = (data, history) => {
         createdBy: uid,
       })
       .then(data => {
+        console.log(data);
         dispatch({type: 'ADD_ROOM_SUCCESS', payload: data});
         history.navigate('Rooms');
       })
@@ -87,8 +88,19 @@ export const getRoom = id => {
       //   message = childData.messages[owl];
       //   messages.push(message);
       // }
-      dispatch({type: 'GET_ROOM_SUCCESS', payload: ourArr});
+      dispatch({type: 'GET_ROOM_SUCCESS', payload: ourArr, key: id});
     });
+  };
+};
+
+export const closeChat = () => {
+  return dispatch => {
+    database()
+      .goOffline()
+      .then(res => {
+        console.log(res);
+        dispatch({type: 'CHAT_CLOSE_SUCCESS'});
+      });
   };
 };
 

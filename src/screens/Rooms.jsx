@@ -6,6 +6,7 @@ function Rooms(props) {
   useEffect(() => {
     props.getRooms();
   }, []);
+  console.log(props.room.rooms);
   return (
     <Fragment>
       <View style={{margin: 20}}>

@@ -16,7 +16,12 @@ const AppNavigator = createMaterialBottomTabNavigator(
       screen: Home,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <Icon name="home" color={tintColor} size={24} />
+          <Icon
+            // style={{marginLeft: 100}}
+            name="home"
+            color={tintColor}
+            size={24}
+          />
         ),
       },
     },
@@ -49,8 +54,8 @@ const AppNavigator = createMaterialBottomTabNavigator(
     inactiveColor: '#333333',
     barStyle: {
       backgroundColor: '#B9D2B1',
-      justifyContent: 'center',
-      alignItems: 'center',
+
+      paddingLeft: 0,
     },
   },
 );

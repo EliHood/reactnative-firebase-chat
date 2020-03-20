@@ -4,6 +4,7 @@ const initialState = {
   roomDesc: '',
   roomKey: '',
   rooms: [],
+  messages: [],
   isLoading: true,
   room: {},
 };
@@ -44,6 +45,7 @@ const roomReducer = (state = initialState, action) =>
         return;
       case 'GET_ROOM_SUCCESS':
         console.log(action);
+        draft.messages = action.payload.messages;
         draft.room = action.payload;
         draft.isLoading = false;
         return;
