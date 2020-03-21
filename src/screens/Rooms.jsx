@@ -13,23 +13,27 @@ function Rooms(props) {
         <Subheading>Rooms</Subheading>
       </View>
       <View style={{flex: 1, marginTop: 40}}>
-        {props.room.isLoading && props.room.rooms ? (
+        {props.room.isLoading ? (
           <ActivityIndicator />
         ) : (
           <Fragment>
-            {props.room.rooms.map((room, key) => (
-              <Fragment key={key}>
-                <Button
-                  onPress={() =>
-                    props.navigation.navigate('Room', {
-                      params: {roomKey: room.key},
-                    })
-                  }
-                  icon="plus">
-                  {room.roomName}
-                </Button>
-              </Fragment>
-            ))}
+            {props.room.rooms.length > 0 ? (
+              props.room.rooms.map((room, key) => (
+                <Fragment key={key}>
+                  <Button
+                    onPress={() =>
+                      props.navigation.navigate('Room', {
+                        params: {roomKey: room.key},
+                      })
+                    }
+                    icon="plus">
+                    {room.roomName}
+                  </Button>
+                </Fragment>
+              ))
+            ) : (
+              <Text style={{textAlign: 'center'}}>No Rooms Yet</Text>
+            )}
           </Fragment>
         )}
       </View>

@@ -34,6 +34,10 @@ const roomReducer = (state = initialState, action) =>
       case 'ADD_MESSAGE_SUCCESS':
         console.log(action);
         return;
+      case 'GET_ROOMS_FAILURE':
+        console.log(action);
+        draft.isLoading = false;
+        return;
       case 'GET_ROOMS_SUCCESS':
         console.log(action);
         draft.rooms = action.payload;

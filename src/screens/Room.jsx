@@ -5,14 +5,7 @@ import {GiftedChat} from 'react-native-gifted-chat';
 import auth from '@react-native-firebase/auth';
 function Room(props) {
   const mounted = useRef();
-  const [messages, setMessages] = useState([
-    // {
-    //   _id: 1,
-    //   text: 'Hello developer',
-    //   createdAt: new Date(),
-    //   user: {_id: 2, name: 'Name'},
-    // },
-  ]);
+  const [messages, setMessages] = useState([]);
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;
@@ -20,6 +13,7 @@ function Room(props) {
       setMessages(props.room.messages);
       console.log('ourtest', auth().currentUser);
     } else {
+      mounted.current = false;
       setMessages(props.room.messages);
     }
     return function cleanUp() {
@@ -45,6 +39,7 @@ function Room(props) {
       <Caption style={styles.caption}>{roomData.roomDesc}</Caption>
       {props.room.messages ? (
         <GiftedChat
+          loadEarlier={true}
           showAvatarForEveryMessage={true}
           showUserAvatar={true}
           renderUsernameOnMessage={true}

@@ -61,6 +61,9 @@ export const getRooms = () => {
       });
       dispatch({type: 'GET_ROOMS_SUCCESS', payload: ourArr});
     });
+    roomRef.once('value').catch(err => {
+      dispatch({type: 'GET_ROOMS_FAILURE', err});
+    });
   };
 };
 
